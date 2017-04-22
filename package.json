@@ -1,0 +1,36 @@
+{
+  "name": "tr4ceable",
+  "version": "0.0.1",
+  "description": "Package Tracking!",
+  "main": "src/server/index.es5.js",
+  "scripts": {
+    "start": "node src/server/index.js",
+    "precommit": "./pre-commit.sh"
+  },
+  "repository": "git@github.com:ericf89/tr4ceable.git",
+  "author": "Eric Fennell <ericf89@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "babel-polyfill": "^6.23.0",
+    "babel-preset-env": "^1.4.0",
+    "babel-register": "^6.24.1",
+    "body-parser": "^1.17.1",
+    "compression": "^1.6.2",
+    "config": "^1.25.1",
+    "express": "^4.15.2",
+    "mongoose": "^4.9.5",
+    "morgan": "^1.8.1",
+    "winston": "^2.3.1"
+  },
+  "devDependencies": {
+    "apidoc": "^0.17.5",
+    "eslint": "^3.19.0",
+    "eslint-config-airbnb": "^14.1.0",
+    "eslint-plugin-import": "^2.2.0",
+    "eslint-plugin-jsx-a11y": "^4.0.0",
+    "eslint-plugin-react": "^6.10.3",
+    "husky": "^0.13.3",
+    "jest": "^19.0.2",
+    "supertest": "^3.0.0"
+  }
+}
