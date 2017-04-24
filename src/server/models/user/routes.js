@@ -1,14 +1,16 @@
 import { Router } from 'express';
-import userModel from './db';
+import User from './db';
 
 const router = Router();
 
 // Creates a User
-router.post('/', async ({ body }, res) => {
-  // @TODO: Validation (Email..., username uniqueness, etc)
+router.post('/', async ({ body: { email, password } }, res) => {
   try {
-    const newUser = await userModel.create(body);
-    return res.status(201).json(newUser.toJSON());
+    const newUser = new User({ email });
+    await newUser.setPassword(password);
+    await newUser.save();
+
+    return res.status(201).json((await User.findById(newUser.id)).toJSON());
   } catch (error) {
     return res.status(401).json({ error, message: 'Invalid data for user' });
   }
@@ -16,7 +18,7 @@ router.post('/', async ({ body }, res) => {
 
 router.get('/:userId', async (req, res) => {
   try {
-    const user = await userModel.findById(req.params.userId);
+    const user = await User.findById(req.params.userId);
     return res.status(200).json(user.toJSON());
   } catch (e) {
     return res.sendStatus(404);

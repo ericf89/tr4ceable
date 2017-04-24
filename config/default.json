@@ -1,5 +1,7 @@
 {
     "port": 3000,
     "nodeEnv": "development",
-    "mongoUrl": "mongodb://localhost/tr4ce"
+    "mongoUrl": "mongodb://localhost/tr4ce",
+    "jwtSecret": "supersekrittokenthing",
+    "tokenExpiration": "1 day"
 }

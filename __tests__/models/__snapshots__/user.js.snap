@@ -4,7 +4,5 @@ exports[`Users should POST to create 1`] = `
 Object {
   "__v": 0,
   "email": "eric@eric.com",
-  "password": "hunter1",
-  "username": "eric",
 }
 `;

@@ -9,7 +9,6 @@ describe('Users', () => {
   afterAll(() => disconnect());
 
   const mockUserBody = {
-    username: 'eric',
     email: 'eric@eric.com',
     password: 'hunter1',
   };
@@ -37,7 +36,7 @@ describe('Users', () => {
     // in the response... so we have toString it to make our comparision?  Lame.
     const expected = testUser.toJSON();
     expected._id = expected._id.toString();
-    delete expected.password;
+    delete expected.admin;
 
     expect(res.body).toEqual(expected);
   });
