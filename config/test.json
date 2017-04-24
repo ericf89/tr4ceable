@@ -1,1 +1,3 @@
-{}
+{
+  "mongoUrl": "mongodb://localhost/tr4ce_TEST"
+}
