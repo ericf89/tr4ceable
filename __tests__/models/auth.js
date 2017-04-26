@@ -8,7 +8,7 @@ import User from '../../src/server/models/user/db';
 describe('Auth', () => {
   let disconnect;
   beforeAll(async () => {
-    disconnect = await mongoConnect();
+    disconnect = await mongoConnect(__filename);
     // Setup a fake mock admin user;
     await User.create({
       email: 'admin@admin.com',
@@ -55,15 +55,7 @@ describe('Auth', () => {
     expect(res.status).toBe(401);
   });
 
-  it('should should 401 if the password is incorrect', async () => {
-    const res = await supertest(server())
-      .post('/api/auth')
-      .send({ email: 'admin@admin.com', password: 'wrong' });
-
-    expect(res.status).toBe(401);
-  });
-
-  it('should should 401 if the user doesn\'t exist', async () => {
+  it('should 401 if the user doesn\'t exist', async () => {
     const res = await supertest(server())
       .post('/api/auth')
       .send({ email: 'blah@blah.com', password: 'blah' });

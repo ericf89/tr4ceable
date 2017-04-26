@@ -32,9 +32,9 @@ export const server = () => {
   return app;
 };
 
-export default () => {
-  mongoConnect();
-  const app = server();
+export default (openDbConnection = mongoConnect, serverConfig = server) => {
+  openDbConnection();
+  const app = serverConfig();
   const development = config.get('nodeEnv') === 'development';
   app.locals.pretty = development;
   app.use(morgan(development ? 'dev' : 'combined'));

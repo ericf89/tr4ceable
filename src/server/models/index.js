@@ -1,4 +1,4 @@
-import { Router } from 'express';
+import Router from 'express-promise-router';
 import userRoutes from './user/routes';
 import authRoutes from './auth/routes';
 

@@ -5,7 +5,9 @@
   "main": "src/server/index.es5.js",
   "scripts": {
     "start": "node src/server/index.js",
-    "precommit": "./pre-commit.sh"
+    "precommit": "./pre-commit.sh",
+    "test": "./node_modules/.bin/jest -i --verbose",
+    "coverage": "./node_modules/.bin/jest -i --verbose --coverage"
   },
   "repository": "git@github.com:ericf89/tr4ceable.git",
   "author": "Eric Fennell <ericf89@gmail.com>",
@@ -18,11 +20,14 @@
     "compression": "^1.6.2",
     "config": "^1.25.1",
     "express": "^4.15.2",
+    "express-promise-router": "^1.1.1",
     "hashy": "^0.6.1",
     "jsonwebtoken": "^7.3.0",
     "mongoose": "^4.9.5",
     "morgan": "^1.8.1",
-    "winston": "^2.3.1"
+    "request-promise": "^4.2.0",
+    "winston": "^2.3.1",
+    "xml2js": "^0.4.17"
   },
   "devDependencies": {
     "apidoc": "^0.17.5",
@@ -34,5 +39,8 @@
     "husky": "^0.13.3",
     "jest": "^19.0.2",
     "supertest": "^3.0.0"
+  },
+  "jest": {
+    "testEnvironment": "node"
   }
 }

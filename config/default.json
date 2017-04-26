@@ -3,5 +3,11 @@
     "nodeEnv": "development",
     "mongoUrl": "mongodb://localhost/tr4ce",
     "jwtSecret": "supersekrittokenthing",
-    "tokenExpiration": "1 day"
+    "tokenExpiration": "1 day",
+    "runscopeEnabled": false,
+    "usps": {
+      "userId": "351TRACE0142",
+      "url": "http://production.shippingapis.com/ShippingAPI.dll",
+      "runscopeUrl": "http://production-shippingapis-com-m0oiz5qag835.runscope.net/ShippingAPI.dll"
+    }
 }

@@ -1,8 +1,14 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Users should POST to create 1`] = `
+exports[`Users should 400 if you try to create a user with a taken email 1`] = `
 Object {
-  "__v": 0,
-  "email": "eric@eric.com",
+  "error": "E11000 duplicate key error index: tr4ce_TEST.users.$email_1 dup key: { : \\"eric@eric.com\\" }",
+  "message": "Invalid data for user",
+}
+`;
+
+exports[`Users should 404 when GETing by email if the email hasn't registered 1`] = `
+Object {
+  "users": Array [],
 }
 `;

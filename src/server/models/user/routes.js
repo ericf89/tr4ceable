@@ -1,5 +1,6 @@
-import { Router } from 'express';
+import Router from 'express-promise-router';
 import User from './db';
+import packageRoutes from '../package/routes';
 
 const router = Router();
 
@@ -12,17 +13,27 @@ router.post('/', async ({ body: { email, password } }, res) => {
 
     return res.status(201).json((await User.findById(newUser.id)).toJSON());
   } catch (error) {
-    return res.status(401).json({ error, message: 'Invalid data for user' });
+    return res.status(400).json({ error: error.message, message: 'Invalid data for user' });
   }
 });
 
-router.get('/:userId', async (req, res) => {
+router.get('/', async ({ query: { email } }, res) => {
+  const users = await User.find(email ? { email } : undefined);
+  return res.status(users.length ? 200 : 404).json({
+    users: users.map(u => u.toJSON()),
+  });
+});
+
+router.use('/:userId*', async (req, res, next) => {
   try {
-    const user = await User.findById(req.params.userId);
-    return res.status(200).json(user.toJSON());
+    req.fetchedUser = await User.findById(req.params.userId);
+    return req.fetchedUser ? next() : res.sendStatus(404);
   } catch (e) {
-    return res.sendStatus(404);
+    return res.sendStatus(500);
   }
 });
+
+router.get('/:userId', (req, res) => res.status(200).json(req.fetchedUser.toJSON()));
+router.use('/:userid/packages', packageRoutes);
 
 export default router;

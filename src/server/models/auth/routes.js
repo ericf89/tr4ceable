@@ -1,6 +1,6 @@
 import jwt from 'jsonwebtoken';
 import config from 'config';
-import { Router } from 'express';
+import Router from 'express-promise-router';
 import User from '../user/db';
 
 const router = new Router();

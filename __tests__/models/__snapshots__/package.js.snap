@@ -1,0 +1,59 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`package should 200 & gracefully handle a malformed response from usps 1`] = `"Something went wrong.  Try again."`;
+
+exports[`package should 200 update a package when PUT to 1`] = `
+Array [
+  "Departed USPS Facility, April 20, 2017, 9:03 pm, FORT WORTH, TX 76161",
+  "Arrived at USPS Facility, April 20, 2017, 8:14 am, FORT WORTH, TX 76161",
+  "Departed USPS Facility, April 20, 2017, 3:36 am, AUSTIN, TX 78710",
+  "Arrived at USPS Facility, April 19, 2017, 11:49 pm, AUSTIN, TX 78710",
+  "Accepted at USPS Origin Facility, April 19, 2017, 10:34 pm, AUSTIN, TX 78701",
+]
+`;
+
+exports[`package should 200 update a package when PUT to 2`] = `"Your item is out for delivery!"`;
+
+exports[`package should 200 update a package when PUT to 3`] = `
+Array [
+  "Out for Delivery, April 22, 2017, 8:03 am, WACO, TX 76706",
+  "Sorting Complete, April 22, 2017, 7:53 am, WACO, TX 76706",
+  "Arrived at Post Office, April 22, 2017, 5:33 am, WACO, TX 76706",
+  "Arrived at USPS Destination Facility, April 22, 2017, 12:36 am, FORT WORTH, TX 76161",
+  "Departed USPS Facility, April 21, 2017, 8:43 am, WEATHERFORD, TX 76086",
+  "Arrived at USPS Facility, April 21, 2017, 8:41 am, WEATHERFORD, TX 76086",
+  "Departed USPS Facility, April 20, 2017, 9:03 pm, FORT WORTH, TX 76161",
+  "Arrived at USPS Facility, April 20, 2017, 8:14 am, FORT WORTH, TX 76161",
+  "Departed USPS Facility, April 20, 2017, 3:36 am, AUSTIN, TX 78710",
+  "Arrived at USPS Facility, April 19, 2017, 11:49 pm, AUSTIN, TX 78710",
+  "Accepted at USPS Origin Facility, April 19, 2017, 10:34 pm, AUSTIN, TX 78701",
+]
+`;
+
+exports[`package should 200 update a package when PUT to 4`] = `"Your item has been delivered to the mail room at 1:40 pm on April 22, 2017 in WACO, TX 76706."`;
+
+exports[`package should 200 when fetching a specific package by id 1`] = `undefined`;
+
+exports[`package should 200 when fetching a specific package by id 2`] = `Array []`;
+
+exports[`package should 201 add/fetch a package when posting a tracking number 1`] = `
+Array [
+  "Out for Delivery, April 22, 2017, 8:03 am, WACO, TX 76706",
+  "Sorting Complete, April 22, 2017, 7:53 am, WACO, TX 76706",
+  "Arrived at Post Office, April 22, 2017, 5:33 am, WACO, TX 76706",
+  "Arrived at USPS Destination Facility, April 22, 2017, 12:36 am, FORT WORTH, TX 76161",
+  "Departed USPS Facility, April 21, 2017, 8:43 am, WEATHERFORD, TX 76086",
+  "Arrived at USPS Facility, April 21, 2017, 8:41 am, WEATHERFORD, TX 76086",
+  "Departed USPS Facility, April 20, 2017, 9:03 pm, FORT WORTH, TX 76161",
+  "Arrived at USPS Facility, April 20, 2017, 8:14 am, FORT WORTH, TX 76161",
+  "Departed USPS Facility, April 20, 2017, 3:36 am, AUSTIN, TX 78710",
+  "Arrived at USPS Facility, April 19, 2017, 11:49 pm, AUSTIN, TX 78710",
+  "Accepted at USPS Origin Facility, April 19, 2017, 10:34 pm, AUSTIN, TX 78701",
+]
+`;
+
+exports[`package should 201 add/fetch a package when posting a tracking number 2`] = `"Your item has been delivered to the mail room at 1:40 pm on April 22, 2017 in WACO, TX 76706."`;
+
+exports[`package should 404 if PUT to a nonexistent package 1`] = `Object {}`;
+
+exports[`package should 404 when deleting a nonexistent package 1`] = `Object {}`;

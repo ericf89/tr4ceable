@@ -1,5 +1,6 @@
 {
     "nodeEnv": "NODE_ENV",
     "port": "PORT",
-    "mongoUrl": "MONGO_URL"
+    "mongoUrl": "MONGO_URL",
+    "runscopeEnabled": "RUNSCOPE"
 }

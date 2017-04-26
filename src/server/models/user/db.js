@@ -1,11 +1,12 @@
 import mongoose from 'mongoose';
 import hashy from 'hashy';
+import { schema as Package } from '../package/db';
 
 export const schema = new mongoose.Schema({
   email: {
     type: String,
     required: true,
-    select: true,
+    unique: true,
   },
   passwordHash: {
     type: String,
@@ -16,7 +17,10 @@ export const schema = new mongoose.Schema({
     default: false,
     select: false,
   },
-});
+  packages: {
+    type: [Package],
+  },
+}, { timestamps: true });
 
 class User {
   async setPassword(rawPass) {
