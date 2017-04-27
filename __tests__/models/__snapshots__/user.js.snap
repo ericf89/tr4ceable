@@ -7,6 +7,10 @@ Object {
 }
 `;
 
+exports[`Users should 401 if user doesn't have privileges to view the user 1`] = `Object {}`;
+
+exports[`Users should 404 if fetched user doesn't exist 1`] = `Object {}`;
+
 exports[`Users should 404 when GETing by email if the email hasn't registered 1`] = `
 Object {
   "users": Array [],

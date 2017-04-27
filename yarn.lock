@@ -1526,6 +1526,10 @@ expand-range@^1.8.1:
   dependencies:
     fill-range "^2.1.0"
 
+express-bearer-token@^2.1.0:
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/express-bearer-token/-/express-bearer-token-2.1.0.tgz#d5c823c4d180f9d2b08798fced3dde9cc9c4906e"
+
 express-promise-router@^1.1.1:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/express-promise-router/-/express-promise-router-1.1.1.tgz#56ac3948c27c809bf32bd12948e1473a7610df69"

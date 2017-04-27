@@ -2,7 +2,6 @@ import supertest from 'supertest';
 import jwt from 'jsonwebtoken';
 import config from 'config';
 import { server, mongoConnect } from '../../src/server/server';
-
 import User from '../../src/server/models/user/db';
 
 describe('Auth', () => {

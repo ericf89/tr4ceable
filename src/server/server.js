@@ -5,6 +5,7 @@ import compression from 'compression';
 import morgan from 'morgan';
 import winston from 'winston';
 import mongoose from 'mongoose';
+import token from 'express-bearer-token';
 import apiRoutes from './models';
 
 mongoose.Promise = Promise;
@@ -26,9 +27,14 @@ export const server = () => {
   app.disable('x-powered-by');
   app.use(bodyParser.json());
   app.use(compression());
+  app.use(token());
 
   app.use('/api', apiRoutes);
   app.get('*', (req, res) => res.sendStatus(404));
+  app.use((err, req, res, next) => {
+    if (err.name === 'CastError' && err.kind === 'ObjectId') return res.sendStatus(404);
+    return next();
+  });
   return app;
 };
 

@@ -2,7 +2,9 @@ import supertest from 'supertest';
 import request from 'request-promise';
 import { server, mongoConnect } from '../../src/server/server';
 import User from '../../src/server/models/user/db';
+import authMiddleware from '../../src/server/models/auth/middleware';
 
+jest.mock('../../src/server/models/auth/middleware');
 jest.mock('request-promise');
 
 const successXmlFull = `
@@ -46,7 +48,17 @@ describe('package', () => {
   beforeEach(async () => {
     await User.find().remove();
     user = await User.create({ email: 'eric@eric.com' });
+    authMiddleware.mockImplementation((req, res, next) => {
+      req.viewer = { _id: user.id };
+      return next();
+    });
+    authMiddleware.mockClear();
   });
+
+  afterEach(() => {
+    expect(authMiddleware).toHaveBeenCalled();
+  });
+
   afterAll(() => disconnect());
 
   it('should 201 add/fetch a package when posting a tracking number', async () => {
