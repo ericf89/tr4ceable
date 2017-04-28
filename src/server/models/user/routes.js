@@ -5,7 +5,8 @@ import requiresAuth from '../auth/middleware';
 
 const router = Router();
 
-router.post('/', async ({ body: { email, password } }, res) => {
+router.post('/', async (req, res) => {
+  const { email, password } = req.body;
   try {
     const newUser = new User({ email });
     await newUser.setPassword(password);
@@ -27,13 +28,17 @@ router.get('/', requiresAuth, async ({ query: { email } }, res) => {
 router.use('/:userId*', requiresAuth, async (req, res, next) => {
   req.fetchedUser = await User.findById(req.params.userId);
   // eslint-disable-next-line no-underscore-dangle
-  if (req.fetchedUser._id.toString() !== req.viewer._id && req.viewer.isAdmin !== true) {
+  if (req.fetchedUser._id.toString() !== req.viewer._id && req.viewer.admin !== true) {
     return res.sendStatus(401);
   }
   return req.fetchedUser ? next() : res.sendStatus(404);
 });
 
 router.get('/:userId', (req, res) => res.status(200).json(req.fetchedUser.toJSON()));
+router.delete('/:userId', async (req, res) => {
+  await req.fetchedUser.remove();
+  return res.sendStatus(200);
+});
 router.use('/:userid/packages', packageRoutes);
 
 export default router;

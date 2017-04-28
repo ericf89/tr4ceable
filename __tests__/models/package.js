@@ -147,8 +147,8 @@ describe('package', () => {
       .delete(`/api/users/${user.id}/packages/${packageId}`);
 
     expect(resp.statusCode).toBe(200);
-    const updatedUser = User.findById(user.id);
-    expect(updatedUser.packages).toBe(undefined);
+    const updatedUser = await User.findById(user.id);
+    expect(updatedUser.packages.length).toBe(0);
   });
 
   it('should 404 when deleting a nonexistent package', async () => {

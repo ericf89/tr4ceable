@@ -78,7 +78,7 @@ describe('Users', () => {
   it('should 200 if viewer is admin', async () => {
     const testUser = await User.create(mockUserBody);
     authMiddleware.mockImplementation((req, res, next) => {
-      req.viewer = { _id: 'someOtherid', isAdmin: true };
+      req.viewer = { _id: 'someOtherid', admin: true };
       return next();
     });
     const { body, statusCode } = await supertest(server())
@@ -123,5 +123,21 @@ describe('Users', () => {
     expect(statusCode).toBe(404);
     expect(body).toMatchSnapshot();
     expect(authMiddleware).toHaveBeenCalled();
+  });
+
+  it('should 200 when deleting self by id', async () => {
+    const testUser = await User.create(mockUserBody);
+    authMiddleware.mockImplementation((req, res, next) => {
+      req.viewer = { _id: testUser.id };
+      return next();
+    });
+    const { body, statusCode } = await supertest(server())
+      .delete(`/api/users/${testUser.id}`);
+
+    expect(statusCode).toBe(200);
+    expect(authMiddleware).toHaveBeenCalled();
+    expect(body).toMatchSnapshot();
+    const gone = await User.findById(testUser.id);
+    expect(gone).toBe(null);
   });
 });

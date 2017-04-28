@@ -47,6 +47,7 @@ class Package {
 
     this.summary = TrackSummary;
     this.details = TrackDetail;
+    this.updatedAt = new Date();
   }
 }
 schema.loadClass(Package);

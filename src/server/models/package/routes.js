@@ -33,6 +33,7 @@ router.put('/:packageId', async (req, res) => {
 router.delete('/:packageId', async (req, res) => {
   const parcel = req.fetchedUser.packages.id(req.params.packageId);
   if (!parcel) return res.sendStatus(404);
+  req.fetchedUser.packages.id(req.params.packageId).remove();
   await req.fetchedUser.save();
   return res.json(req.fetchedUser.toJSON());
 });

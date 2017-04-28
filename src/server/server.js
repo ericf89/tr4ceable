@@ -6,6 +6,7 @@ import morgan from 'morgan';
 import winston from 'winston';
 import mongoose from 'mongoose';
 import token from 'express-bearer-token';
+import cors from 'cors';
 import apiRoutes from './models';
 
 mongoose.Promise = Promise;
@@ -26,6 +27,7 @@ export const server = () => {
   app.set('port', config.get('port'));
   app.disable('x-powered-by');
   app.use(bodyParser.json());
+  app.use(cors());
   app.use(compression());
   app.use(token());
 

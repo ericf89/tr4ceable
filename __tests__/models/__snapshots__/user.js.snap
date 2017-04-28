@@ -1,5 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`Users should 200 when deleting self by id 1`] = `Object {}`;
+
 exports[`Users should 400 if you try to create a user with a taken email 1`] = `
 Object {
   "error": "E11000 duplicate key error index: tr4ce_TEST.users.$email_1 dup key: { : \\"eric@eric.com\\" }",
