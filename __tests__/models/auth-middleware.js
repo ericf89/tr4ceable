@@ -1,5 +1,5 @@
 import jwt from 'jsonwebtoken';
-import middleware from '../../src/server/models/auth/middleware';
+import middleware, { requiresAdmin } from '../../src/server/models/auth/middleware';
 
 jest.mock('jsonwebtoken');
 
@@ -40,4 +40,18 @@ describe('Auth middleware', () => {
     expect(jwt.verify.toHaveBeenCalled);
     expect(res.sendStatus).toHaveBeenCalledWith(401);
   });
+  describe('requiresAdmin', () => {
+    it('should call next if the users is an admin', () => {
+      req.viewer = { admin: true };
+      requiresAdmin(req, res, next);
+      expect(next).toHaveBeenCalled();
+    });
+
+    it('should 401 if they\'re not', () => {
+      req.viewer = { admin: false };
+      requiresAdmin(req, res, next);
+      expect(res.sendStatus).toHaveBeenCalledWith(401);
+    });
+  });
 });
+

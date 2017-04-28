@@ -22,6 +22,7 @@ class Package {
   async fetchTrackingData() {
     const builder = new xml2js.Builder();
     const xml = builder.buildObject({
+      // This syntax does not match the readme on the lib.... But it works!  Thanks internet.
       TrackRequest: {
         $: { USERID: uspsConfig.userId },
         TrackID: {
@@ -29,7 +30,7 @@ class Package {
         },
       },
     });
-
+    //  qs is query string.  we send the xml in the query string because 🇺🇸
     const trackResponse = await request({
       url: config.get('runscopeEnabled') ? uspsConfig.runscopeUrl : uspsConfig.url,
       method: 'GET',
@@ -39,6 +40,7 @@ class Package {
       },
     });
 
+    // Parse the response with a healthy amount of defaults to handle the worst cases.  hopefully.
     const {
       TrackResponse: {
         TrackInfo: [{ TrackSummary, TrackDetail }] = [{ TrackSummary: 'Something went wrong.  Try again.' }],
@@ -47,7 +49,7 @@ class Package {
 
     this.summary = TrackSummary;
     this.details = TrackDetail;
-    this.updatedAt = new Date();
+    this.updatedAt = new Date();  // Surprised I have to set this manually. Mongoose doesn't appear to do it for you.
   }
 }
 schema.loadClass(Package);
